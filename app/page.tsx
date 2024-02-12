@@ -7,6 +7,41 @@ interface TwitterSidebarButton {
   icon: React.ReactNode;
 }
 
+const sidebarMenuItems: TwitterSidebarButton[] = [
+  {
+    title: "Home",
+    icon: <BiHomeCircle />,
+  },
+  {
+    title: "Explore",
+    icon: <BiHash />,
+  },
+  {
+    title: "Notifications",
+    icon: <BsBell />,
+  },
+  {
+    title: "Messages",
+    icon: <BsEnvelope />,
+  },
+  {
+    title: "Bookmarks",
+    icon: <BsBookmark />,
+  },
+  {
+    title: "Twitter Blue",
+    icon: <BiMoney />,
+  },
+  {
+    title: "Profile",
+    icon: <BiUser />,
+  },
+  {
+    title: "More",
+    icon: <SlOptions />,
+  },
+];
+
 export default function Home() {
   return (
     <div>
