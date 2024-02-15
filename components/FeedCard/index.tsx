@@ -25,7 +25,7 @@ const FeedCard: React.FC = () => {
             Francisco, California. The company operated the social networking
             service Twitter and previously the Vine short video app and
             Periscope livestreaming service. In April 2023, Twitter merged with
-            X Holdings[6] and ceased to be an independent company, becoming a
+            X Holdings and ceased to be an independent company, becoming a
             part of X Corp.
           </p>
           <div className="flex justify-between mt-5 text-xl items-center p-2 w-[90%]">
