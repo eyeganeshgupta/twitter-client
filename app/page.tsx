@@ -2,7 +2,13 @@
 
 import React, { useCallback } from "react";
 import { BsBell, BsBookmark, BsEnvelope, BsTwitter } from "react-icons/bs";
-import { BiHash, BiHomeCircle, BiMoney, BiUser } from "react-icons/bi";
+import {
+  BiHash,
+  BiHomeCircle,
+  BiImageAlt,
+  BiMoney,
+  BiUser,
+} from "react-icons/bi";
 import FeedCard from "@/components/FeedCard";
 import { SlOptions } from "react-icons/sl";
 import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
@@ -56,6 +62,13 @@ const sidebarMenuItems: TwitterSidebarButton[] = [
 export default function Home() {
   const { user } = useCurrentUser();
   const queryClient = useQueryClient();
+
+  const handleSelectImage = useCallback(() => {
+    const input = document.createElement("input");
+    input.setAttribute("type", "file");
+    input.setAttribute("accept", "images/*");
+    input.click();
+  }, []);
 
   const handleLoginWithGoogle = useCallback(
     async (cred: CredentialResponse) => {
@@ -133,6 +146,39 @@ export default function Home() {
         </div>
 
         <div className="col-span-5 border-r-[1px] border-l-[1px] h-screen overflow-scroll no-scrollbar border-gray-600">
+          <div>
+            <div className="border border-l-0 border-r-0 border-b-0 border-gray-600 p-5 hover:bg-slate-900 transition-all cursor-pointer">
+              <div className="grid grid-cols-12 gap-3">
+                <div className="col-span-1">
+                  {user?.profileImageURL && (
+                    <Image
+                      className="rounded-full"
+                      src={user?.profileImageURL}
+                      alt="user-image"
+                      height={50}
+                      width={50}
+                    />
+                  )}
+                </div>
+                <div className="col-span-11">
+                  <textarea
+                    className="w-full bg-transparent text-xl px-3 border-b border-slate-700"
+                    rows={3}
+                    placeholder="What's happening?"
+                  ></textarea>
+                  <div className="mt-2 flex justify-between items-center">
+                    <BiImageAlt
+                      className="text-xl"
+                      onClick={handleSelectImage}
+                    />
+                    <button className="bg-[#1d9bf0] font-semibold text-sm py-2 px-4 rounded-full">
+                      Tweet
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <FeedCard />
           <FeedCard />
           <FeedCard />
