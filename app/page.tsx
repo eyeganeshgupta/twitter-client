@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { BsBell, BsBookmark, BsEnvelope, BsTwitter } from "react-icons/bs";
 import {
   BiHash,
@@ -18,7 +18,7 @@ import { verifyUserGoogleTokenQuery } from "@/graphql/query/user";
 import { useCurrentUser } from "@/hooks/user";
 import { useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
-import { useGetAllTweets } from "@/hooks/tweet";
+import { useCreateTweet, useGetAllTweets } from "@/hooks/tweet";
 import { Tweet } from "@/gql/graphql";
 
 interface TwitterSidebarButton {
@@ -63,16 +63,22 @@ const sidebarMenuItems: TwitterSidebarButton[] = [
 
 export default function Home() {
   const { user } = useCurrentUser();
-
   const { tweets = [] } = useGetAllTweets();
+  const { mutate } = useCreateTweet();
 
   const queryClient = useQueryClient();
+
+  const [content, setContent] = useState("");
 
   const handleSelectImage = useCallback(() => {
     const input = document.createElement("input");
     input.setAttribute("type", "file");
     input.setAttribute("accept", "images/*");
     input.click();
+  }, []);
+
+  const handleCreateTweet = useCallback(() => {
+    mutate({ content });
   }, []);
 
   const handleLoginWithGoogle = useCallback(
@@ -167,6 +173,8 @@ export default function Home() {
                 </div>
                 <div className="col-span-11">
                   <textarea
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
                     className="w-full bg-transparent text-xl px-3 border-b border-slate-700"
                     rows={3}
                     placeholder="What's happening?"
@@ -176,7 +184,10 @@ export default function Home() {
                       className="text-xl"
                       onClick={handleSelectImage}
                     />
-                    <button className="bg-[#1d9bf0] font-semibold text-sm py-2 px-4 rounded-full">
+                    <button
+                      className="bg-[#1d9bf0] font-semibold text-sm py-2 px-4 rounded-full"
+                      onClick={handleCreateTweet}
+                    >
                       Tweet
                     </button>
                   </div>
