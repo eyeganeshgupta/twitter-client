@@ -1,3 +1,5 @@
+"use client";
+
 import TwitterLayout from "@/components/Layout/TwitterLayout";
 import type { NextPage } from "next";
 import { BsArrowLeftShort } from "react-icons/bs";
