@@ -12,6 +12,8 @@ interface FeedCardProps {
 const FeedCard: React.FC<FeedCardProps> = (props) => {
   const { data } = props;
 
+  // console.log(data);
+
   return (
     <div className="border border-l-0 border-r-0 border-b-0 border-gray-600 p-5 hover:bg-slate-900 transition-all cursor-pointer">
       <div className="grid grid-cols-12 gap-3">
@@ -31,7 +33,7 @@ const FeedCard: React.FC<FeedCardProps> = (props) => {
           <h5>
             {data?.author?.firstName} {data?.author?.lastName}
           </h5>
-          <p>{data?.content}</p>
+          <p>{data.content}</p>
           <div className="flex justify-between mt-5 text-xl items-center p-2 w-[90%]">
             <div>
               <BiMessageRounded />

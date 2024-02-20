@@ -23,9 +23,10 @@ export default function Home() {
     input.click();
   }, []);
 
-  const handleCreateTweet = useCallback(() => {
+  const handleCreateTweet = useCallback(async () => {
+    console.log(content);
     mutate({ content });
-  }, []);
+  }, [content]);
 
   return (
     <div>

@@ -2,18 +2,18 @@
 
 import FeedCard from "@/components/FeedCard";
 import TwitterLayout from "@/components/Layout/TwitterLayout";
-import { Tweet } from "@/gql/graphql";
+import { Tweet, User } from "@/gql/graphql";
 import { useCurrentUser } from "@/hooks/user";
-import type { NextPage } from "next";
+import { NextPage } from "next";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { BsArrowLeftShort } from "react-icons/bs";
 
 const UserProfilePage: NextPage = () => {
   const { user } = useCurrentUser();
-  const router = useRouter();
+  const pathname = usePathname();
 
-  console.log(router);
+  console.log(pathname);
 
   return (
     <div>
